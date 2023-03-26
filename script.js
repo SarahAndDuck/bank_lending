@@ -10,7 +10,8 @@ const btnsOpenModalWindow = document.querySelectorAll(
   '.btn--show-modal-window'
 );
 
-const openModalWindow = function () {
+const openModalWindow = function (e) {
+  e.preventDefault();
   modalWindow.classList.remove('hidden');
   overlay.classList.remove('hidden');
 };
