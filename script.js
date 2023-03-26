@@ -1,7 +1,7 @@
 'use strict';
 
 ///////////////////////////////////////
-//c
+// modal
 
 const modalWindow = document.querySelector('.modal-window');
 const overlay = document.querySelector('.overlay');
@@ -32,4 +32,14 @@ document.addEventListener('keydown', function (e) {
   if (e.key === 'Escape' && !modalWindow.classList.contains('hidden')) {
     closeModalWindow();
   }
+});
+
+///////////////////////////////////////
+// smooth scrolling
+
+const btnScrollTo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+btnScrollTo.addEventListener('click', function () {
+  section1.scrollIntoView({ behavior: 'smooth' });
 });
