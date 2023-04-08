@@ -43,3 +43,15 @@ const section1 = document.querySelector('#section--1');
 btnScrollTo.addEventListener('click', function () {
   section1.scrollIntoView({ behavior: 'smooth' });
 });
+
+///////////////////////////////////////
+////  smooth page navigation
+///////////////////////////////////////
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  e.preventDefault();
+  const target = e.target;
+  if (target.classList.contains('nav__link')) {
+    const href = target.getAttribute('href');
+    document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+  }
+});
