@@ -410,7 +410,6 @@ h4 {
   position: absolute;
   top: 50%;
   z-index: 10;
-
   border: none;
   background: rgba(255, 255, 255, 0.7);
   font-family: inherit;
@@ -420,6 +419,8 @@ h4 {
   width: 5.5rem;
   font-size: 3.25rem;
   cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
 }
 
 .slider__btn--left {
