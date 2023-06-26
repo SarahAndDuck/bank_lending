@@ -1,6 +1,6 @@
 :root {
-  --color-first: #5eeee7;
-  --color-second: #5dcaeb;
+  --color-first: #5695c3;
+  --color-second: #5684be;
   --color-third: #58a4eb;
   --color-first-darker: #048680;
   --color-second-darker: #076785;
@@ -8,8 +8,8 @@
   --color-first-opacity: #5dcaeb3a;
   --color-second-opacity: #5eeee731;
   --color-third-opacity: #58a4eb2d;
-  --gradient-first: linear-gradient(to top left, #048680, #5eeee7);
-  --gradient-second: linear-gradient(to top left, #03534f, #5eeee7);
+  --gradient-first: linear-gradient(to top left, #083c6d, #58a4eb);
+  --gradient-second: linear-gradient(to top left, #083c6d, #58a4eb);
 }
 
 * {
@@ -27,16 +27,15 @@ body {
   font-family: 'Noto Sans', sans-serif;
   font-size: 1.6em;
   font-weight: 400;
-  color: rgb(49, 49, 49);
+  color: rgb(32, 36, 15);
   line-height: 2;
-  background-color: #f0f0f0;
+  background-color: #efecdb;
 }
 
 /* Основные элементы */
 .section {
   padding: 15rem 3rem;
   border-top: 1px solid rgb(213, 213, 213);
-
   transition: transform 1s, opacity 1s;
 }
 
@@ -78,7 +77,8 @@ body {
 }
 
 .btn:hover {
-  background-color: var(--color-first-darker);
+  background-color: var(--color-second);
+  color: #ffffff;
 }
 
 .btn--text {
@@ -172,8 +172,8 @@ img {
 .nav__link--btn:hover,
 .nav__link--btn:active {
   color: inherit;
-  background-color: var(--color-first-darker);
-  color: #333;
+  background-color: var(--color-second);
+  color: #ffffff;
 }
 
 /* Header */
@@ -299,21 +299,8 @@ h4 {
   display: inline-block;
 }
 
-.operations__tab--1 {
-  background-color: var(--color-second);
-}
-
-.operations__tab--1:hover {
-  background-color: var(--color-second-darker);
-}
-
 .operations__tab--3 {
-  background-color: var(--color-third);
   margin: 0;
-}
-
-.operations__tab--3:hover {
-  background-color: var(--color-third-darker);
 }
 
 .operations__tab--active {

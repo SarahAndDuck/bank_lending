@@ -49,9 +49,9 @@ btnScrollTo.addEventListener('click', function () {
 ///////////////////////////////////////
 document.querySelector('.nav__links').addEventListener('click', function (e) {
   e.preventDefault();
-  const target = e.target;
-  if (target.classList.contains('nav__link')) {
-    const href = target.getAttribute('href');
+  const clicktedButton = e.clicktedButton;
+  if (clicktedButton.classList.contains('nav__link')) {
+    const href = clicktedButton.getAttribute('href');
     document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
   }
 });
@@ -175,3 +175,41 @@ function right() {
 
 btnRight.addEventListener('click', left);
 btnLeft.addEventListener('click', right);
+
+///////////////////////////////////////
+////  создание вкладок
+///////////////////////////////////////
+// контейнер для кнопок табов
+const tabsContainer = document.querySelector('.operations__tab-container');
+// находим кнопки табы
+const operationsTabs = document.querySelectorAll('.operations__tab');
+// блоки с контентом
+const operationsContent = document.querySelectorAll('.operations__content');
+//  ivent deligation
+tabsContainer.addEventListener('click', function (e) {
+  //closest  возвращает ближайший родительский элемент (или сам элемент) с классом .operations__tab или null
+  const clicktedButton = e.target.closest('.operations__tab');
+
+  // техника Guard clause  "пункт охраны"
+  if (!clicktedButton) {
+    return;
+  }
+  // у всех таб кнопок убрать класс active
+  operationsTabs.forEach(itemTab =>
+    itemTab.classList.remove('operations__tab--active')
+  );
+  // нажатой кнопке табу добавить класс active
+  clicktedButton.classList.add(`operations__tab--active`);
+
+  // у контента удаляем класс active
+  operationsContent.forEach(itemContent => {
+    itemContent.classList.remove('operations__content--active');
+  });
+
+  // соответствующему контенту добавляем класс active
+
+  let activContent = document.querySelector(
+    `.operations__content--${clicktedButton.dataset.tab}`
+  );
+  activContent.classList.add('operations__content--active');
+});
