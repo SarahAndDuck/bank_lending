@@ -50,6 +50,7 @@ btnScrollTo.addEventListener('click', function () {
 document.querySelector('.nav__links').addEventListener('click', function (e) {
   e.preventDefault();
   const clicktedButton = e.clicktedButton;
+  if (!clicktedButton) return;
   if (clicktedButton.classList.contains('nav__link')) {
     const href = clicktedButton.getAttribute('href');
     document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
@@ -211,5 +212,46 @@ tabsContainer.addEventListener('click', function (e) {
   let activContent = document.querySelector(
     `.operations__content--${clicktedButton.dataset.tab}`
   );
+
   activContent.classList.add('operations__content--active');
 });
+
+///////////////////////////////////////
+////  анимация приглушение цвета ссылок
+///////////////////////////////////////
+const nav = document.querySelector('nav');
+// функция изменения прозрачности
+const navLinksHoverAnimation = function (e) {
+  if (e.target.classList.contains('nav__link')) {
+    const linkOver = e.target;
+    const siblingLinks = linkOver
+      .closest('.nav__links')
+      .querySelectorAll('.nav__link');
+    const logo = linkOver.closest('.nav').querySelector('img');
+    const logoText = linkOver.closest('.nav').querySelector('.nav__text');
+
+    siblingLinks.forEach(elem => {
+      if (elem !== linkOver) {
+        elem.style.opacity = this;
+      }
+    });
+    logo.style.opacity = this;
+    logoText.style.opacity = this;
+  }
+};
+// при отведении мышки, первый способ
+// mousover - имеет всплытие
+// nav.addEventListener('mouseover', function (e) {
+//   navLinksHoverAnimation(e, 0.4);
+// });
+
+// nav.addEventListener('mouseout', function (e) {
+//   navLinksHoverAnimation(e, 1);
+// });
+
+// второй способ, работа с аргументами при помощи bind и this
+// this == e.target.current
+// с помощью bind Переустанавливаем this
+nav.addEventListener('mouseover', navLinksHoverAnimation.bind(0.4));
+
+nav.addEventListener('mouseout', navLinksHoverAnimation.bind(1));
