@@ -255,3 +255,51 @@ const navLinksHoverAnimation = function (e) {
 nav.addEventListener('mouseover', navLinksHoverAnimation.bind(0.4));
 
 nav.addEventListener('mouseout', navLinksHoverAnimation.bind(1));
+
+///////////////////////////////////////
+////  sticky navigation
+///////////////////////////////////////
+
+/// =============================================================
+// способ с событием прокручивания
+
+// const section1Coords = section1.getBoundingClientRect();
+
+// window.addEventListener('scroll', function (e) {
+//   // console.log('window', window.scrollY);
+//   // console.log('section1', section1.top);
+
+//   if (window.scrollY > section1Coords.top) {
+//     nav.classList.add('sticky');
+//   } else nav.classList.remove('sticky');
+// });
+
+// =============================================================
+// способ 2
+// intersection Observer API
+
+const header = document.querySelector('.header');
+// высота навменю
+const navHeight = nav.getBoundingClientRect().height;
+const observerOption = {
+  // весь вьюпорт
+  root: null,
+  // 0%
+  threshold: 0,
+  // 100 px до таргет элемента
+  rootMargin: `-${navHeight}px`,
+};
+// entries - массив threshold
+const getStikyNav = function (entries) {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) {
+      nav.classList.add('sticky');
+    } else {
+      nav.classList.remove('sticky');
+    }
+  });
+};
+
+const observer = new IntersectionObserver(getStikyNav, observerOption);
+
+observer.observe(header);
