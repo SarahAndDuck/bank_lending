@@ -300,6 +300,31 @@ const getStikyNav = function (entries) {
   });
 };
 
-const observer = new IntersectionObserver(getStikyNav, observerOption);
+const headerObserver = new IntersectionObserver(getStikyNav, observerOption);
 
-observer.observe(header);
+headerObserver.observe(header);
+
+///////////////////////////////////////
+////  show elements while scrolling , part 10
+///////////////////////////////////////
+const allSection = document.querySelectorAll('.section');
+
+const appearanceSection = function (entries, observer) {
+  const entry = entries[0];
+
+  if (!entry.isIntersecting) return;
+  // если isIntersecting = true
+  entry.target.classList.remove('section--hidden');
+  // удалить обзервер для секции которая уже появилась
+  observer.unobserv(entry.target);
+};
+
+const sectionObserver = new IntersectionObserver(appearanceSection, {
+  root: null,
+  threshold: 0.1,
+});
+
+allSection.forEach(function (section) {
+  sectionObserver.observe(section);
+  section.classList.add('section--hidden');
+});
